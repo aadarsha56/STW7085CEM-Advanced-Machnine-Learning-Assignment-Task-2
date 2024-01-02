@@ -1,0 +1,27 @@
+[System]
+Name='cost_optimization'
+Type='mamdani'
+Version=2.0
+NumInputs=1
+NumOutputs=1
+NumRules=1
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='bill_expectation_deviation'
+Range=[0 5]
+NumMFs=1
+MF1='high':'trapmf',[1 2.55 5 5]
+
+[Output1]
+Name='cost_optimization_deviation'
+Range=[0 4]
+NumMFs=1
+MF1='high':'trapmf',[1.6 3.2 4 4]
+
+[Rules]
+1, 1 (1) : 1

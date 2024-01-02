@@ -1,0 +1,49 @@
+[System]
+Name='bill_hours'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=2
+NumRules=5
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='net_energy'
+Range=[0 2500]
+NumMFs=3
+MF1='low':'trimf',[0 0 900]
+MF2='medium':'trimf',[500 1250 2000]
+MF3='high':'trimf',[1600 2500 2500]
+
+[Input2]
+Name='cost_optimization'
+Range=[0 14]
+NumMFs=2
+MF1='no_optimization':'gaussmf',[2 0]
+MF2='optimum':'gaussmf',[2 14]
+
+[Output1]
+Name='bill'
+Range=[0 500]
+NumMFs=3
+MF1='low':'trimf',[0 0 142.6]
+MF2='medium':'trimf',[100 250 400]
+MF3='high':'trimf',[350 500 500]
+
+[Output2]
+Name='hours_to_be_used'
+Range=[0 7]
+NumMFs=2
+MF1='any':'trapmf',[-6.3 -0.7 0.7 6.3]
+MF2='non_peak':'trapmf',[0.7 6.3 7.7 13.3]
+
+[Rules]
+1 0, 1 1 (1) : 1
+2 1, 2 1 (1) : 1
+3 1, 3 1 (1) : 1
+2 2, 1 2 (1) : 1
+3 2, 2 2 (1) : 1
